@@ -47,7 +47,6 @@ public class SimpleWebsocketClient {
         try {
             session.getRemote().sendString(str);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
