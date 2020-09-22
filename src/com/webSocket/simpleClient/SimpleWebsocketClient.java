@@ -12,7 +12,7 @@ import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 
 @WebSocket
-public class StringUppercaseClient {
+public class SimpleWebsocketClient {
 
     private Session session;
 

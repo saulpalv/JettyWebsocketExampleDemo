@@ -1,7 +1,7 @@
 package com.webSocket;
 
 import com.webSocket.StringReverse.StringReverseServlet;
-import com.webSocket.simpleClient.StringUppercaseClient;
+import com.webSocket.simpleClient.SimpleWebsocketClient;
 import com.webSocket.StringToUppercase.StringUppercaseServlet;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletHandler;
@@ -38,7 +38,7 @@ public class Main {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            StringUppercaseClient client = new StringUppercaseClient();
+            SimpleWebsocketClient client = new SimpleWebsocketClient();
             client.connectAndWait("ws://localhost:" + port + route);
             client.sendMessage("echo");
             client.sendMessage("test");
