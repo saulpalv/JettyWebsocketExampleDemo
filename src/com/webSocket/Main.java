@@ -8,7 +8,7 @@ import org.eclipse.jetty.servlet.ServletHandler;
 
 public class Main {
 
-    static int port = 8081;
+    static final int port = 8081;
 
     public static void main(String[] args) {
         StartClient("/reverse");

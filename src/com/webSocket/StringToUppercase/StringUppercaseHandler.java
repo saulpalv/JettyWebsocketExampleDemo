@@ -1,48 +1,31 @@
 package com.webSocket.StringToUppercase;
 
-import org.eclipse.jetty.websocket.api.Session;
-import org.eclipse.jetty.websocket.api.annotations.*;
+import com.webSocket.parent.AbstractHandler;
+import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 
 import java.io.IOException;
 
-/**
- * Example WebSocket, simple echo
- */
 @WebSocket
-public class StringUppercaseHandler {
-
-    Session session = null;
+public class StringUppercaseHandler extends AbstractHandler {
 
     public StringUppercaseHandler(){
         System.out.println("Socket Handler Crated : Uppercase");
     }
 
-    @OnWebSocketMessage
-    public void onWebSocketText(Session session, String message) throws IOException {
-        System.out.println("Message received:" + message);
+    @Override
+    public void processMessage(String message) {
         sendMessage(message.toUpperCase());
     }
 
-    public void sendMessage(String message) throws IOException {
+    @Override
+    public void sendMessage(String message) {
         if (session.isOpen()) {
-            session.getRemote().sendString(message);
+            try {
+                session.getRemote().sendString(message);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             System.out.println("Message sent:" + message);
         }
-    }
-
-    @OnWebSocketConnect
-    public void onWebSocketConnect(Session session) throws IOException {
-        this.session = session;
-        System.out.println(session.getRemoteAddress().getHostString() + " connected!");
-    }
-
-    @OnWebSocketClose
-    public void onWebSocket(Session session, int status, String reason) {
-        System.out.println(session.getRemoteAddress().getHostString() + " closed!");
-    }
-
-    @OnWebSocketError
-    public void onWebSocketError(Session session, Throwable error) throws IOException {
-        error.printStackTrace(System.err);
     }
 }

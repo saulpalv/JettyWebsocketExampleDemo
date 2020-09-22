@@ -16,7 +16,7 @@ public class StringUppercaseClient {
 
     private Session session;
 
-    CountDownLatch latch = new CountDownLatch(1);
+    final CountDownLatch latch = new CountDownLatch(1);
 
     public void connectAndWait(String direction) {
         WebSocketClient client = new WebSocketClient();
